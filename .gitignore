@@ -1,0 +1,7 @@
+ngConfigs/
+directory.txt
+.venv
+__pycache__
+.idea
+*.log
+.DS_Store
