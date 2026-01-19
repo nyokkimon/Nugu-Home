@@ -15,37 +15,59 @@
 - **Auto-Cleanup:** Automatically purges messages older than a set number of days to keep your channel clutter-free.
 - **Smart Formatting:** Uses YAML-style blocks for easy reading on both mobile and desktop.
 
-## 🛠️ Prerequisites
+---
 
-**Create the** `nugu` folder to store the bot and navigate to it.
-1. **Clone the Repo:** `git clone https://github.com/nyokkimon/ng-home.git`
-2. **Install Dependencies:** `pip install -r requirements.txt`
+## 🚀 Installation & Setup
 
-### Linux (Raspberry Pi / Ubuntu)
-1. Install Nmap: `sudo apt install nmap`
-2. Run with sudo: `sudo python3 bot.py` (Required for ARP/MAC scanning).
+### 1. Discord Bot Configuration
+Before running the code, you must prepare the Discord environment:
+1.  Go to the [Discord Developer Portal](https://discord.com/developers/applications).
+2.  Create a **New Application** named `ng-home`.
+3.  Navigate to the **Bot** tab and click **Reset Token** to copy your unique Bot Token.
+4.  **Crucial:** Scroll down to "Privileged Gateway Intents" and enable **Message Content Intent**.
+5.  Use the **OAuth2 URL Generator** to invite the bot to your server with `Send Messages` and `Manage Messages` permissions.
+6.  **Privacy Tip:** Create a **Private Channel** in your Discord server and copy its **Channel ID** (Enable *Developer Mode* in Discord Settings to see "Copy ID" on right-click).
 
-### Windows
-1. Install Nmap from [nmap.org](https://nmap.org/download.html) (Ensure **Npcap** is checked during install).
-2. Open Terminal or PowerShell as **Administrator**.
-3. Run: `python bot.py`
+### 2. Install Network Dependencies (Nmap)
+The bot requires Nmap to perform network discovery.
+* **Linux (Raspberry Pi / Ubuntu):**
+    ```bash
+    sudo apt update && sudo apt install nmap -y
+    ```
+* **Windows:**
+    Download and install the [Nmap Binary](https://nmap.org/download.html). Ensure the **Npcap** box is checked during installation.
 
-## 🚀 Setup
-1. **Install Requirements:**
-   ```bash
-   pip install discord.py python-nmap requests
+### 3. Local Project Setup
+1.  **Clone the Repo:**
+    ```bash
+    git clone [https://github.com/nyokkimon/ng-home.git](https://github.com/nyokkimon/ng-home.git)
+    cd ng-home
+    ```
+2.  **Install Python Libraries:**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-2. **Discord Bot Configuration:**
-   - Go to the [Discord Developer Portal](https://discord.com/developers/applications).
-   - Create a **New Application** and give it a name (e.g., `ng-home`).
-   - Navigate to the **Bot** tab.
-   - Enable **Message Content Intent** (This is required for the bot to read your `!add` and `!scan` commands).
-   - Copy your **Token** and keep it safe.
-   - Invite the bot to your server using the OAuth2 URL Generator with `Manage Messages` and `Send Messages` permissions.
+### 4. Running the Bot
+The bot requires administrative/root privileges to perform ARP/MAC address scanning.
 
-3. **Local Configuration:**
-   - On first run, the app will ask for the `token` and `channelId`. This will allow for automatic creation of config files.
-   - *Note: Ensure the `channelId` is a number, not a string (no quotes).*
+* **Linux:**
+    ```bash
+    sudo python3 bot.py
+    ```
+* **Windows:**
+    Open PowerShell or Command Prompt as **Administrator** and run:
+    ```bash
+    python bot.py
+    ```
+
+### 5. First-Run Wizard
+On the first launch, the bot will start a Setup Wizard in your terminal:
+1.  **Token:** Paste your Discord Bot Token.
+2.  **Channel ID:** Paste the ID of your private Discord channel.
+    * *Note: Ensure the `channelId` is a raw number (e.g., `123456789012345678`), do not use quotes.*
+
+---
 
 ## 🔄 Updating
 **Nugu Home** will automatically check for updates once every 24 hours. If a new version is detected, a notification will appear in your Discord channel.
