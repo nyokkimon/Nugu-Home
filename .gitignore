@@ -1,0 +1,28 @@
+# --- Virtual Environments ---
+# Catches .venv, env, venv, ENV, etc.
+.venv/
+venv/
+env/
+ENV/
+build/
+dist/
+
+# --- App Specific ---
+ngConfigs/
+noupload/
+*.log
+
+# --- Python System Files ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- IDEs and Editors ---
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# --- Operating System Files ---
+.DS_Store
+Thumbs.db
