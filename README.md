@@ -41,6 +41,10 @@ Before running the code, you must prepare the Discord environment:
 2. **Scopes:** Select `bot`.
 3. **Bot Permissions:** A list will appear. Under "Text Permissions," select **Send Messages** and **Manage Messages**.
 4. Copy the URL generated at the bottom. Paste it into your browser, select your server, and click **Authorize**.
+
+### D. Invite the Bot to the Channel
+1. Go to your private channel, click on the gear whell **Edit Channel** > **Permissions** > **Add Members** 
+2. Select **Nugu-Home** APP. (The bot cannot post in private channels unless manually added).
 ---
 
 ### 2. Install Network Dependencies (Nmap)
@@ -50,10 +54,13 @@ The bot requires Nmap to perform network discovery.
     sudo apt update && sudo apt install nmap -y
     ```
 
-* **Windows:**
-    Download the <a href="https://nmap.org/download.html" target="_blank">Nmap Binary</a>. Ensure the **Npcap** box is checked during installation.
-
 ### 3. Local Project Setup
+    Start by getting sudo admin privileges
+* **Linux (Raspberry Pi / Ubuntu):**
+    ```bash
+    sudo su
+    ```
+
 1.  **Clone the Repo:**
     ```bash
     git clone https://github.com/nyokkimon/Nugu-Home.git
@@ -67,15 +74,10 @@ The bot requires Nmap to perform network discovery.
     source venv/bin/activate
     ```
 
-* **Windows:**
-    Download and install the [Nmap Binary](https://nmap.org/download.html). Ensure the **Npcap** box is checked during installation.
-    ```bash
-    python -m venv venv
-    .\venv\Scripts\activate
-    ```
-
 3.  **Install Python Libraries:**
-    ```pip install -r requirements.txt```
+    ```bash
+    pip install -r requirements.txt
+    ```
 
 ### 4. Running the Bot
 The bot requires administrative/root privileges to perform ARP/MAC address scanning.
@@ -84,11 +86,6 @@ Ensure that the **virtual environment is active before** running the bot.
 * **Linux:**
     ```bash
     sudo python3 bot.py
-    ```
-* **Windows:**
-    Open PowerShell or Command Prompt as **Administrator** and run:
-    ```bash
-    python bot.py
     ```
 
 ### 5. First-Run Wizard
@@ -122,7 +119,7 @@ Supervisor is the easiest way to keep your bot running in the background. It wil
     directory=/home/YOUR_USER/Nugu-Home
     autostart=true
     autorestart=true
-    user=YOUR_USER
+    user=root
     stderr_logfile=/var/log/nugu.err.log
     stdout_logfile=/var/log/nugu.out.log
     ```
@@ -131,32 +128,6 @@ Supervisor is the easiest way to keep your bot running in the background. It wil
     sudo supervisorctl reread
     sudo supervisorctl update
     ```
-
-### 🪟 Windows: Startup Shortcut Method
-This is the simplest way for Windows users. It will open a command window and start the bot every time you log in.
-
-1. **Create the Launcher Script: In your Nugu-Home folder, create a new file named run_bot.bat. Right-click it, select Edit, and paste this:**
-   ```bash
-   @echo off
-   cd /d %~dp0
-   call venv\Scripts\activate.bat
-   python bot.py
-   pause
-   ```
-2. **Open the Startup Folder: Press Win + R on your keyboard, type:**
-    ```bash
-    shell:startup
-    ```
-    and hit Enter.
-3. **Create the Shortcut:**
-   Go back to your Nugu-Home folder.
-
-   Right-click your run_bot.bat file and select Create Shortcut.
-
-   Drag that new shortcut into the Startup folder you opened in Step 2.
-
-4. **Admin Note:**
-   Nugu-Home uses Nmap, it may require Administrator privileges. If it fails to run, right-click the **Shortcut** in your Startup folder, go to **Properties > Advanced**, and check **Run as administrator**.
 ---
 
 
