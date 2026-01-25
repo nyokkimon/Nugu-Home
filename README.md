@@ -23,19 +23,36 @@
 
 ### 1. Discord Bot Configuration
 Before running the code, you must prepare the Discord environment:
-1.  Go to the [Discord Developer Portal](https://discord.com/developers/applications).
-2.  Create a **New Application** named `Nugu-Home`.
-3.  Navigate to the **Bot** tab and click **Reset Token** to copy your unique Bot Token.
-4.  **Crucial:** Scroll down to "Privileged Gateway Intents" and enable **Message Content Intent**.
-5.  Use the **OAuth2 URL Generator** to invite the bot to your server with `Send Messages` and `Manage Messages` permissions.
-6.  **Privacy Tip:** Create a **Private Channel** in your Discord server and copy its **Channel ID** (Enable *Developer Mode* in Discord Settings to see "Copy ID" on right-click).
+# 🚀 Nugu-Home: Complete Installation & Setup
 
+## 1. Discord Bot Configuration
+Before touching any code, you must create the "identity" and "home" for your bot.
+
+### A. Create the Application
+1. Go to the [Discord Developer Portal](https://discord.com/developers/applications).
+2. Click **New Application** and name it `Nugu-Home`.
+3. **The Bot Token:** Navigate to the **Bot** tab. Click **Reset Token** to generate your unique key. **Copy and save this**—it is the only time you will see it.
+4. **Intents (Crucial):** Scroll down to **Privileged Gateway Intents** and toggle **Message Content Intent** to **ON**. Click **Save Changes**.
+
+### B. Generate the Invite Link
+1. Navigate to **OAuth2** -> **URL Generator**.
+2. **Scopes:** Select `bot`.
+3. **Bot Permissions:** A list will appear. Under "Text Permissions," select **Send Messages** and **Manage Messages**.
+4. Copy the URL generated at the bottom. Paste it into your browser, select your server, and click **Authorize**.
+
+### C. Server & Private Channel Setup
+1. **Enable Developer Mode:** In your Discord App, go to **User Settings** > **Advanced** > Toggle **Developer Mode** to **ON**.
+2. **Create a Private Channel:** In your server, click the **+** next to Text Channels. Toggle **Private Channel** to **ON** and name it `nugu-home`.
+3. **Get Channel ID:** Right-click the `#nugu-home` channel name and select **Copy Channel ID**. Save this for the setup wizard.
+
+---
 ### 2. Install Network Dependencies (Nmap)
 The bot requires Nmap to perform network discovery.
 * **Linux (Raspberry Pi / Ubuntu):**
     ```bash
     sudo apt update && sudo apt install nmap -y
     ```
+
 * **Windows:**
     Download and install the [Nmap Binary](https://nmap.org/download.html). Ensure the **Npcap** box is checked during installation.
 
@@ -45,13 +62,27 @@ The bot requires Nmap to perform network discovery.
     git clone https://github.com/nyokkimon/Nugu-Home.git
     cd Nugu-Home
     ```
-2.  **Install Python Libraries:**
+
+2.  **Create Virtual Environment**
+* **Linux (Raspberry Pi / Ubuntu):**
     ```bash
-    pip install -r requirements.txt
+    python3 -m venv venv
+    source venv/bin/activate
     ```
+
+* **Windows:**
+    Download and install the [Nmap Binary](https://nmap.org/download.html). Ensure the **Npcap** box is checked during installation.
+    ```bash
+    python -m venv venv
+    .\venv\Scripts\activate
+    ```
+
+3.  **Install Python Libraries:**
+    ```pip install -r requirements.txt```
 
 ### 4. Running the Bot
 The bot requires administrative/root privileges to perform ARP/MAC address scanning.
+Ensure that the **virtual environment is active before** running the bot.
 
 * **Linux:**
     ```bash
@@ -70,6 +101,67 @@ On the first launch, the bot will start a Setup Wizard in your terminal:
     * *Note: Ensure the `channelId` is a raw number (e.g., `123456789012345678`), do not use quotes.*
 
 ---
+
+
+## 🤖 Simplified Auto-Start Setup
+Follow these steps to ensure your bot starts automatically when your computer or Raspberry Pi reboots.
+
+
+### 🐧 Linux: Using Supervisor
+Supervisor is the easiest way to keep your bot running in the background. It will automatically restart the bot if it crashes.
+
+1. **Install Supervisor:**
+   ```bash
+   sudo apt update && sudo apt install supervisor -y
+   ```
+2. **Create the Configuration File:**
+    ```bash
+    sudo nano /etc/supervisor/conf.d/nugu.conf
+    ```
+3. **Paste the following (Update YOUR_USER to your actual username):**
+    ```Ini, TOML
+    [program:nugu]
+    command=/home/YOUR_USER/Nugu-Home/venv/bin/python3 bot.py
+    directory=/home/YOUR_USER/Nugu-Home
+    autostart=true
+    autorestart=true
+    user=YOUR_USER
+    stderr_logfile=/var/log/nugu.err.log
+    stdout_logfile=/var/log/nugu.out.log
+    ```
+4. **Apply the changes:**
+    ```bash
+    sudo supervisorctl reread
+    sudo supervisorctl update
+    ```
+
+### 🪟 Windows: Startup Shortcut Method
+This is the simplest way for Windows users. It will open a command window and start the bot every time you log in.
+
+1. **Create the Launcher Script: In your Nugu-Home folder, create a new file named run_bot.bat. Right-click it, select Edit, and paste this:**
+   ```bash
+   @echo off
+   cd /d %~dp0
+   call venv\Scripts\activate.bat
+   python bot.py
+   pause
+   ```
+2. **Open the Startup Folder: Press Win + R on your keyboard, type:**
+    ```bash
+    shell:startup
+    ```
+    and hit Enter.
+3. **Create the Shortcut:**
+   Go back to your Nugu-Home folder.
+
+   Right-click your run_bot.bat file and select Create Shortcut.
+
+   Drag that new shortcut into the Startup folder you opened in Step 2.
+
+4. **Admin Note:**
+   Nugu-Home uses Nmap, it may require Administrator privileges. If it fails to run, right-click the **Shortcut** in your Startup folder, go to **Properties > Advanced**, and check **Run as administrator**.
+---
+
 
 ## 🔄 Updating
 **Nugu Home** will automatically check for updates once every 24 hours. If a new version is detected, a notification will appear in your Discord channel.
