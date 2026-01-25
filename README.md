@@ -24,24 +24,25 @@
 ### 1. Discord Bot Configuration
 Before running the code, you must prepare the Discord environment:
 
-### A. Create the Application
-1. Go to the [Discord Developer Portal](https://discord.com/developers/applications).
+### A. Server & Private Channel Setup
+1. **Enable Developer Mode:** In your Discord App, go to **User Settings** > **Advanced** > Toggle **Developer Mode** to **ON**.
+2. **Create a Server:** Click the plus (+) icon on the left sidebar, select Create My Own, then For me and my friends and name it `Nugu-Home`.
+3. **Create a Private Channel:** In your server, click the **+** next to Text Channels. Toggle **Private Channel** to **ON** and name it `nugu-home`.
+4. **Get Channel ID:** Right-click the `#nugu-home` channel name and select **Copy Channel ID**. Save this for the setup wizard.
+
+### B. Create the Application
+1. Go to the <a href="https://discord.com/developers/applications" target="_blank">Discord Developer Portal</a>.
 2. Click **New Application** and name it `Nugu-Home`.
 3. **The Bot Token:** Navigate to the **Bot** tab. Click **Reset Token** to generate your unique key. **Copy and save this**—it is the only time you will see it.
 4. **Intents (Crucial):** Scroll down to **Privileged Gateway Intents** and toggle **Message Content Intent** to **ON**. Click **Save Changes**.
 
-### B. Generate the Invite Link
+### C. Generate the Invite Link
 1. Navigate to **OAuth2** -> **URL Generator**.
 2. **Scopes:** Select `bot`.
 3. **Bot Permissions:** A list will appear. Under "Text Permissions," select **Send Messages** and **Manage Messages**.
 4. Copy the URL generated at the bottom. Paste it into your browser, select your server, and click **Authorize**.
-
-### C. Server & Private Channel Setup
-1. **Enable Developer Mode:** In your Discord App, go to **User Settings** > **Advanced** > Toggle **Developer Mode** to **ON**.
-2. **Create a Private Channel:** In your server, click the **+** next to Text Channels. Toggle **Private Channel** to **ON** and name it `nugu-home`.
-3. **Get Channel ID:** Right-click the `#nugu-home` channel name and select **Copy Channel ID**. Save this for the setup wizard.
-
 ---
+
 ### 2. Install Network Dependencies (Nmap)
 The bot requires Nmap to perform network discovery.
 * **Linux (Raspberry Pi / Ubuntu):**
@@ -50,7 +51,7 @@ The bot requires Nmap to perform network discovery.
     ```
 
 * **Windows:**
-    Download and install the [Nmap Binary](https://nmap.org/download.html). Ensure the **Npcap** box is checked during installation.
+    Download the <a href="https://nmap.org/download.html" target="_blank">Nmap Binary</a>. Ensure the **Npcap** box is checked during installation.
 
 ### 3. Local Project Setup
 1.  **Clone the Repo:**
