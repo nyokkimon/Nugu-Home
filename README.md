@@ -23,10 +23,6 @@
 
 ### 1. Discord Bot Configuration
 Before running the code, you must prepare the Discord environment:
-# 🚀 Nugu-Home: Complete Installation & Setup
-
-## 1. Discord Bot Configuration
-Before touching any code, you must create the "identity" and "home" for your bot.
 
 ### A. Create the Application
 1. Go to the [Discord Developer Portal](https://discord.com/developers/applications).
