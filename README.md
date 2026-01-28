@@ -47,19 +47,20 @@ Before running the code, you must prepare the Discord environment:
 2. Select **Nugu-Home** APP. (The bot cannot post in private channels unless manually added).
 ---
 
-### 2. Install Network Dependencies (Nmap)
-The bot requires Nmap to perform network discovery.
-* **Linux (Raspberry Pi / Ubuntu):**
-    ```bash
-    sudo apt update && sudo apt install nmap -y
-    ```
-
-### 3. Local Project Setup
-    Start by getting sudo admin privileges
+[PRE] Start by getting sudo admin privileges
 * **Linux (Raspberry Pi / Ubuntu):**
     ```bash
     sudo su
     ```
+
+### 2. Install Network Dependencies (Nmap)
+The bot requires Nmap to perform network discovery.
+* **Linux (Raspberry Pi / Ubuntu):**
+    ```bash
+    apt update && sudo apt install nmap -y
+    ```
+
+### 3. Local Project Setup
 
 1.  **Clone the Repo:**
     ```bash
@@ -80,12 +81,12 @@ The bot requires Nmap to perform network discovery.
     ```
 
 ### 4. Running the Bot
-The bot requires administrative/root privileges to perform ARP/MAC address scanning.
+The bot **requires administrative/root privileges** to perform ARP/MAC address scanning.
 Ensure that the **virtual environment is active before** running the bot.
 
 * **Linux:**
     ```bash
-    sudo python3 bot.py
+    python3 bot.py
     ```
 
 ### 5. First-Run Wizard
