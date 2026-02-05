@@ -5,6 +5,14 @@
 
 **Nugu-Home** is a network presence and security monitor for Discord. Named after the Korean word *Nugu* (누구 or ㄴㄱ- "Who?",), it tracks who is currently home and alerts you to unrecognized devices. It provides a rolling history of network activity while automatically keeping your Discord channel clean.
 
+## Video Tutorial
+📺 Watch here: https://www.youtube.com/watch?v=Jfk1FQ2KWM0
+
+## Logo
+🖼️ Download and use the project logo here:  
+https://github.com/nyokkimon/Nugu-Home/blob/main/assets/logo/Nugu-logo_highRes.png
+
+
 ## 👤 Author & License
 * **Creator:** Simone Onorato ([Nyokkimon](https://github.com/nyokkimon))
 * **License:** [GPLv3](LICENSE) - Free to use and modify.
